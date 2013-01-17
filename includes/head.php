@@ -49,4 +49,9 @@
 <!-- links up rss feed -->
 <link rel="alternate" type="application/rss+xml" title="punini.de rss-feed" href="rss.php" />
 
-<link rel="stylesheet" href="css/styles.css?salt=salty">
+<!-- stylesheets -->
+<link rel="stylesheet" type="text/css" href="css/lib/normalize.css" >
+<link rel="stylesheet" type="text/css" href="css/styles.css?salt=salty" >
+<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen, projection"/>
+<link rel="stylesheet" type="text/css" href="css/print.css"  media="print" />
+<!--[if IE]> <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /> <![endif]-->
