@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>reloader</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+		<script>
+			!window.jQuery && document.write(unescape('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))
+		</script>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			.controlls {
+				width: 100%;
+				background-color: black;
+				color: white;
+				padding: 10px;
+			}
+		</style>
+		<script>
+			var timer;
+
+			function newTimer(milliseconds) {
+				clearTimeout(timer);
+				timer = setTimeout(function() {
+					animateReload(milliseconds);
+					changeIFrameURL(getInputURL());
+					newTimer(milliseconds);
+				}, milliseconds);
+			}
+
+			function stopTimer() {
+				clearTimeout(timer);
+			}
+
+			function animateReload(milliseconds) {
+				var intervalInput = $("input[name='interval']")
+
+				intervalInput.css({
+					"background-color" : "#ff0000"
+				});
+				intervalInput.animate({
+					"background-color" : "#ffffff"
+				}, milliseconds);
+			}
+
+			function changeIFrameURL(newURL) {
+				$('iframe').attr("src", newURL);
+			}
+
+			function getInputURL() {
+				return $("input[name='url']").val();
+			}
+
+			function getIntervalMilliseconds() {
+				return $("input[name='interval']").val();
+			}
+
+			function init() {
+				var initialURL = "index.php";
+				$('iframe').attr("src", initialURL);
+				$("input[name='url']").val(initialURL);
+				$("input[name='url']").keyup(function() {
+					var newURL = getInputURL();
+					changeIFrameURL(newURL);
+				});
+				$("button[name='start']").click(function() {
+					newTimer(getIntervalMilliseconds())
+				});
+				$("button[name='stop']").click(function() {
+					stopTimer();
+				});
+
+				$("input[name='interval']").keyup(function() {
+					var newIntervalMilliseconds = getIntervalMilliseconds();
+					if (newIntervalMilliseconds >= 500) {
+						newTimer(newIntervalMilliseconds)
+					}
+				});
+
+			}
+
+
+			$(document).ready(function() {
+				init();
+			})
+		</script>
+
+	</head>
+	<body>
+		<div class="controlls">
+			url:
+			<input type="text" name="url">
+			refresh interval (ms):
+			<input type="text" name="interval" value="1000">
+			<button type="button" name="start">
+				start!
+			</button>
+			<button type="button" name="stop">
+				stop
+			</button>
+		</div>
+
+		<iframe src="http://www.w3schools.com" width="1024" height="768">
+			iframes not supported
+		</iframe>
+	</body>
+</html>
