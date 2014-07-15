@@ -12,9 +12,9 @@
 
 <!-- Genormte Geodaten zur Adresse -->
 <meta name="geo.region" content="DE-BE" />
-<meta name="geo.position" content="52.46819;13.42611" />
-<meta name="geo.placename" content="emser str., 12051 berlin-neukoelln" />
-<meta name="ICBM" content="52.46819,13.42611" />
+<meta name="geo.position" content="" />
+<meta name="geo.placename" content="berlin" />
+<meta name="ICBM" content="" />
 
 <!-- website uses java-script -->
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
